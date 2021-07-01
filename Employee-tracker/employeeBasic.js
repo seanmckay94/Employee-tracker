@@ -165,6 +165,40 @@ const viewAllRoles = () => {
     })
 };
 
+const updateEmployeeRole = () => {
+    connection.query("SELECT * FROM employee", function (err, res) {
+        if (err) throw err;
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "roleUpdate",
+                message: "What is the employees new role ID?"
+            },
+            {
+                type: "input",
+                name: "managerUpdate",
+                message: "What is the new roles manager ID?"
+            }
+        ])
+        .then((answer) => {
+            connection.query("UPDATE employee SET ? WHERE ?",
+            [
+                {
+                    role_id: answer.roleUpdate
+                },
+                {
+                    manager_id: answer.managerUpdate
+                },
+            ],
+            (error) => {
+                if (err) throw err;
+                console.log("Employee role updated successfully!");
+                start();
+            })
+        });
+    });
+};
+
 const addNewRole = () => {
     inquirer.prompt([
         {
