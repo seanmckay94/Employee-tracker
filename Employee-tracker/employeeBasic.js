@@ -186,11 +186,6 @@ const updateEmployeeRole = () => {
                 type: "input",
                 name: "roleUpdate",
                 message: "What is the employees new role ID?"
-            },
-            {
-                type: "input",
-                name: "managerUpdate",
-                message: "What is the new roles manager ID?"
             }
         ])
         .then((answer) => {
@@ -198,9 +193,6 @@ const updateEmployeeRole = () => {
             [
                 {
                     role_id: answer.roleUpdate
-                },
-                {
-                    manager_id: answer.managerUpdate
                 },
             ],
             (error) => {

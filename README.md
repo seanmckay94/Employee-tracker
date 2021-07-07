@@ -33,6 +33,7 @@ Through the command line interface a user can
 
 - Demo
 
+![Employee tracker](Assets/Employee-tracker.gif)
 
 - Installation
     1. Clone or download the repository
