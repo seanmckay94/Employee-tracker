@@ -1,6 +1,7 @@
 const mySQL = require('mysql');
 const inquirer = require('inquirer');
-const consoletable = require('console.table')
+const consoletable = require('console.table');
+const { restoreDefaultPrompts } = require('inquirer');
 
 const connection = mySQL.createConnection({
     host: 'localhost',
@@ -169,6 +170,18 @@ const updateEmployeeRole = () => {
     connection.query("SELECT * FROM employee", function (err, res) {
         if (err) throw err;
         inquirer.prompt([
+            {
+                name: 'employeeChoice',
+                type: "rawlist",
+                choices() {
+                    const choiceArray = [];
+                    results.forEach(({ first_name }) => {
+                        choiceArray.push(first_name);
+                    });
+                    return choiceArray;
+                },
+                message: "Which Employee would you like to update?",
+            },
             {
                 type: "input",
                 name: "roleUpdate",
